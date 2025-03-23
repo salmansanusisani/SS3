@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magazine information</title>
+ <style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* Ensures table doesn't shrink too much */
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+p{
+    color: red;
+}
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  #search-input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .table-container {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  table {
+    min-width: 100%; /* Allow table to shrink further */
+  }
+
+  th, td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  th {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 18px;
+  }
+
+  #search-input {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  th {
+    font-size: 12px;
+  }
+}
+ </style>
+</head>
+<body>
+  <h1>Magazine information</h1>
+  <p>please kindly contact +2348135156769 if any of the above info is not correct or you find yours missing</p>
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search by name, nickname, email, etc...">
+  </div>
+  <div class="table-container">
+    <table id="contact-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Nickname</th>
+          <th>Ambition</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Parting Words</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows will be populated by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Data to be displayed
+const data = [
+  { name: "Salman Sanusi Sani", nickname: "nil", ambition: "Software engineer", email: "salmansanusi90@gmail.com", phone: "8135156769", partingWords: "Peace" },
+  { name: "Sadiq Garba Ibrahim", nickname: "Suadik", ambition: "Software engineer", email: "sadiqgarbaibrahimadeel@gmail.com", phone: "8125531111", partingWords: "Alhamdulliah" },
+  { name: "Salisu Sunusi Sulaiman", nickname: "Ghost", ambition: "Petrochemical engineer", email: "sunusisalisu67@gmail.com", phone: "9121883297", partingWords: "Honourable, I made it" },
+  { name: "Zakaria Aminu Rano", nickname: "Walledrano, Zaks", ambition: "Yahoo boy", email: "zakariaaminu08@icloud.com", phone: "912188327", partingWords: "Done and Dusted" },
+  { name: "Abdulrahman Imam", nickname: "Bingo", ambition: "Civil engineer", email: "Abdulrahman0@gmail.com", phone: "9048394228", partingWords: "I love you" },
+  { name: "Mahmoud Abbas", nickname: "Za beast, MD Abbas", ambition: "Software engineer", email: "mahmoudabbas@gmail.com", phone: "8094455299", partingWords: "Die in peace" },
+  { name: "Abdulshakur O Tijjani", nickname: "Shakur Bobo", ambition: "Pharmacist", email: "tijanitunde333@gmail.com", phone: "9026500983", partingWords: "Stay Black!" },
+  { name: "Haruna Abubakar Godowoli", nickname: "Godo", ambition: "Software engineer", email: "harunagodowoli0@gmail.com", phone: "9033467169", partingWords: "Suiiiiiii" },
+  { name: "Muhammad Ahmed Tijjani", nickname: "Malo, Teejay", ambition: "Doctor", email: "ahmedtijjani@gmail.com", phone: "9153154127", partingWords: "Alhamdulli" },
+  { name: "Kamaludeen Babaji", nickname: "Maryland", ambition: "Game Artist", email: "kingpogman@gmail.com", phone: "8144289590", partingWords: "Skill issue" },
+  { name: "Muhammad Aminu Lawi", nickname: "Ustaz", ambition: "Doctor", email: "lawimuhammadamin@gmail.com", phone: "9067099985", partingWords: "Hold the Qur’an and see what Allah brings you" },
+  { name: "Muhammad Murtala", nickname: "Homie", ambition: "Mechanical engineer", email: "muhammadmmaiarizoko@gmail.com", phone: "9089296194", partingWords: "It is not over until I say so" },
+  { name: "Muhammad A Seze", nickname: "Zexy", ambition: "Cybersecurity", email: "sezemuhammad@gmail.com", phone: "9022526405", partingWords: "Shinzo Sasagge" },
+  { name: "Ibrahim Shafi’u", nickname: "Top G", ambition: "Software engineer", email: "arfatkhalil11@gmail.com", phone: "9020443230", partingWords: "We go again!" },
+  { name: "Ishaq Bako", nickname: "Muhammad Nasir", ambition: "Footballer", email: "Ishaqbakonasir222@gmail.com", phone: "9018051326", partingWords: "Suiiiiiii" },
+  { name: "Zahradeen Sani", nickname: "ZAZA", ambition: "International Relations", email: "yazid_saniusman@icloud.com", phone: "9027973246", partingWords: "I’m still my mommy’s boy" },
+  { name: "Adam M Manu", nickname: "M.Adam", ambition: "Navy", email: "Nil", phone: "Nil", partingWords: "Nil" },
+  { name: "Bello Muhammad Sani", nickname: "Belloti", ambition: "Accountant", email: "bellosa83@gmail.com", phone: "7025997183", partingWords: "See you at the top" },
+  { name: "Musa Billyaminu", nickname: "The Boss", ambition: "Content creator", email: "Musabillyaminu09@gmail.com", phone: "9065753496", partingWords: "Keep up the grind and time will come. Stay rich" },
+  { name: "Ibrahim Murtala", nickname: "Jago", ambition: "NDA", email: "Ibrahimkaab30@gmail.com", phone: "8088705211", partingWords: "Keep going" },
+  { name: "Adam Murshid", nickname: "Murshit", ambition: "Software engineer", email: "Murshid@gmail.com", phone: "Nil", partingWords: "Determination is the key to success" }
+];
+
+// Function to populate the table
+function populateTable(data) {
+  const tableBody = document.querySelector("#contact-table tbody");
+  tableBody.innerHTML = ""; // Clear existing rows
+
+  data.forEach(person => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${person.name}</td>
+      <td>${person.nickname}</td>
+      <td>${person.ambition}</td>
+      <td>${person.email}</td>
+      <td>${person.phone}</td>
+      <td>${person.partingWords}</td>
+    `;
+
+    tableBody.appendChild(row);
+  });
+}
+
+// Function to filter data based on search input
+function filterTable() {
+  const searchInput = document.getElementById("search-input");
+  const searchTerm = searchInput.value.toLowerCase();
+
+  const filteredData = data.filter(person => {
+    return (
+      person.name.toLowerCase().includes(searchTerm) ||
+      person.nickname.toLowerCase().includes(searchTerm) ||
+      person.ambition.toLowerCase().includes(searchTerm) ||
+      person.email.toLowerCase().includes(searchTerm) ||
+      person.phone.toLowerCase().includes(searchTerm) ||
+      person.partingWords.toLowerCase().includes(searchTerm)
+    );
+  });
+
+  populateTable(filteredData);
+}
+
+// Add event listener for search input
+document.getElementById("search-input").addEventListener("input", filterTable);
+
+// Populate the table with all data initially
+populateTable(data);
+  </script>
+</body>
+</html>
